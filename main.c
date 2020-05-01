@@ -12,10 +12,9 @@ int main(void){
 	struct ListNode *current;
 
 	current = &five;
-	printf("%2d\n", current->data);
-	current = current->next;
-	printf("%2d\n", current->data);
-	current = current->next;
-	printf("%2d\n", current->data);
+	while(current != NULL){
+		printf("%2d\n", current->data);
+		current = current->next;
+	}
 	return 0;
 }
