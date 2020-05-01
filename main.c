@@ -1,11 +1,6 @@
 #include <stdio.h>
-
-struct ListNode{
-	int data;
-	struct ListNode *next;
-};
-
-int PrintList(struct ListNode *head);
+#include "define.h" 
+#include "func.h"
 
 int main(void){
 	int node_no;
@@ -19,15 +14,3 @@ int main(void){
 	printf("number of nodes is %d\n", node_no);
 	return 0;
 }
-
-int PrintList(struct ListNode *head){
-	int i = 0;
-	struct ListNode *current = head;
-	while(current != NULL){
-		i++;
-		printf("%2d\n", current->data);
-		current = current->next;
-	}
-	return i;
-}
-
