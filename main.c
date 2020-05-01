@@ -9,9 +9,13 @@ int main(void){
 	struct ListNode ten = {10, NULL};
 	struct ListNode seven = {7, &ten};
 	struct ListNode five = {5, &seven};
+	struct ListNode *current;
 
-	printf("%2d %p\n", five.data, five.next);	//変数fiveの中身
-	printf("%2d %p\n", seven.data, seven.next);	//変数secondの中身
-	printf("%2d %p\n", ten.data, ten.next);		//変数tenの中身
+	current = &five;
+	printf("%2d\n", current->data);
+	current = current->next;
+	printf("%2d\n", current->data);
+	current = current->next;
+	printf("%2d\n", current->data);
 	return 0;
 }
