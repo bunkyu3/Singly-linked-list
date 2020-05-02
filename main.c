@@ -5,6 +5,7 @@
 
 void InsertToHead(struct ListNode **head_p, int data);
 void InsertToTail(struct ListNode **head_p, int data);
+void InsertToMiddle(struct ListNode **head_p, int data, int position);
 
 int main(void){
 	struct ListNode five = {5, NULL};
@@ -18,6 +19,7 @@ int main(void){
 
 	InsertToHead(head_p, 2);
 	InsertToTail(head_p, 10);
+	InsertToMiddle(head_p, 7, 3);
 
 	printf("after\n");
 	PrintList(head);
@@ -38,6 +40,21 @@ void InsertToTail(struct ListNode **head_p, int data){
 	newNode->data = data;
 	p = *head_p;
 	while(p != NULL){
+		q = p;
+		p = p->next;
+	}
+	q->next = newNode;
+	newNode->next = p;
+}
+
+void InsertToMiddle(struct ListNode **head_p, int data, int position){
+	int i = 1;
+	struct ListNode *newNode, *p, *q;
+	newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
+	newNode->data = data;
+	p = *head_p;
+	while(i<position){
+		i++;
 		q = p;
 		p = p->next;
 	}
