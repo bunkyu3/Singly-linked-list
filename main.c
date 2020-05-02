@@ -4,6 +4,7 @@
 #include "func.h"
 
 void DeleteHead(struct ListNode **head_p);
+void DeleteTail(struct ListNode **head_p);
 
 int main(void){
 	struct ListNode *two;
@@ -24,6 +25,7 @@ int main(void){
 	PrintList(head);
 
 	DeleteHead(head_p);
+	DeleteTail(head_p);
 
 	printf("after\n");
 	PrintList(head);
@@ -34,5 +36,16 @@ void DeleteHead(struct ListNode **head_p){
 	struct ListNode *p;
 	p = *head_p;
 	*head_p = p->next;
+	free(p);
+}
+
+void DeleteTail(struct ListNode **head_p){
+	struct ListNode *p, *q;
+	p = *head_p;
+	while(p->next != NULL){
+		q = p;
+		p = p->next;
+	}
+	q->next = p->next;
 	free(p);
 }
