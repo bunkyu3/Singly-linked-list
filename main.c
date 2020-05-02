@@ -3,9 +3,7 @@
 #include "define.h" 
 #include "func.h"
 
-void DeleteHead(struct ListNode **head_p);
-void DeleteTail(struct ListNode **head_p);
-void DeleteMiddle(struct ListNode **head_p, int position);
+void DeleteFromLinkedList(struct ListNode **head_p, int position);
 
 int main(void){
 	struct ListNode *two;
@@ -25,43 +23,34 @@ int main(void){
 	printf("before\n");
 	PrintList(head);
 
-	DeleteHead(head_p);		//この時点で4,5,7,10
-	DeleteTail(head_p);		//この時点で4,5,7
-	DeleteMiddle(head_p, 2);
+	DeleteFromLinkedList(head_p, 1);		//この時点で4,5,7,10
+	DeleteFromLinkedList(head_p, 4);		//この時点で4,5,7
+	DeleteFromLinkedList(head_p, 2);
 
 	printf("after\n");
 	PrintList(head);
 	return 0;
 }
 
-void DeleteHead(struct ListNode **head_p){
-	struct ListNode *p;
-	p = *head_p;
-	*head_p = p->next;
-	free(p);
-}
-
-void DeleteTail(struct ListNode **head_p){
+void DeleteFromLinkedList(struct ListNode **head_p, int position){
+	int i = 1;
 	struct ListNode *p, *q;
 	p = *head_p;
-	while(p->next != NULL){
-		q = p;
-		p = p->next;
+	if(position==1){
+		*head_p = p->next;
+		free(p);
+	}else{
+		while( (p!=NULL)&&(i<position) ){
+			i++;
+			q = p;
+			p = p->next;
+		}
+		if(p==NULL){
+			printf("Position dose not exit\n");
+		}else{
+			q->next = p->next;
+			free(p);
+		}
 	}
-	q->next = p->next;
-	free(p);
-}
-
-void DeleteMiddle(struct ListNode **head_p, int position){
-	int i=1;
-	struct ListNode *p, *q;
-	p = *head_p;
-	while(i<position){
-		i++;
-		q = p;
-		p = p->next;
-	}
-	q->next = p->next;
-	free(p);
 }
 
