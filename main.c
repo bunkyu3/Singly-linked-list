@@ -4,6 +4,7 @@
 #include "func.h"
 
 void InsertToHead(struct ListNode **head_p, int data);
+void InsertToTail(struct ListNode **head_p, int data);
 
 int main(void){
 	struct ListNode five = {5, NULL};
@@ -16,6 +17,7 @@ int main(void){
 	PrintList(head);
 
 	InsertToHead(head_p, 2);
+	InsertToTail(head_p, 10);
 
 	printf("after\n");
 	PrintList(head);
@@ -28,4 +30,17 @@ void InsertToHead(struct ListNode **head_p, int data){
 	newNode->data = data;
 	newNode->next = *head_p;
 	*head_p = newNode;
+}
+
+void InsertToTail(struct ListNode **head_p, int data){
+	struct ListNode *newNode, *p, *q;
+	newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
+	newNode->data = data;
+	p = *head_p;
+	while(p != NULL){
+		q = p;
+		p = p->next;
+	}
+	q->next = newNode;
+	newNode->next = p;
 }
