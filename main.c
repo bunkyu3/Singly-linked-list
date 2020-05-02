@@ -3,21 +3,36 @@
 #include "define.h" 
 #include "func.h"
 
+void DeleteHead(struct ListNode **head_p);
+
 int main(void){
-	struct ListNode five = {5, NULL};
+	struct ListNode *two;
+	two = (struct ListNode *)malloc(sizeof(struct ListNode));
+	two->data = 2;
+	two->next = NULL;
+	
 	struct ListNode **head_p;
 	struct ListNode *head;
 	head_p = &head;
-	head = &five;
+	head = two;
+	InsertInLinkedList(head_p, 4, 2);
+	InsertInLinkedList(head_p, 5, 3);
+	InsertInLinkedList(head_p, 7, 4);
+	InsertInLinkedList(head_p, 10, 5);
 
 	printf("before\n");
 	PrintList(head);
 
-	InsertInLinkedList(head_p, 2, 1);
-	InsertInLinkedList(head_p, 10, 3);
-	InsertInLinkedList(head_p, 7, 3);
+	DeleteHead(head_p);
 
 	printf("after\n");
 	PrintList(head);
 	return 0;
+}
+
+void DeleteHead(struct ListNode **head_p){
+	struct ListNode *p;
+	p = *head_p;
+	*head_p = p->next;
+	free(p);
 }
