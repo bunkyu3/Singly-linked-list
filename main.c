@@ -3,8 +3,6 @@
 #include "define.h" 
 #include "func.h"
 
-void DeleteFromLinkedList(struct ListNode **head_p, int position);
-
 int main(void){
 	struct ListNode *two;
 	two = (struct ListNode *)malloc(sizeof(struct ListNode));
@@ -31,26 +29,3 @@ int main(void){
 	PrintList(head);
 	return 0;
 }
-
-void DeleteFromLinkedList(struct ListNode **head_p, int position){
-	int i = 1;
-	struct ListNode *p, *q;
-	p = *head_p;
-	if(position==1){
-		*head_p = p->next;
-		free(p);
-	}else{
-		while( (p!=NULL)&&(i<position) ){
-			i++;
-			q = p;
-			p = p->next;
-		}
-		if(p==NULL){
-			printf("Position dose not exit\n");
-		}else{
-			q->next = p->next;
-			free(p);
-		}
-	}
-}
-
