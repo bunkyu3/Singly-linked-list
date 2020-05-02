@@ -5,6 +5,7 @@
 
 void DeleteHead(struct ListNode **head_p);
 void DeleteTail(struct ListNode **head_p);
+void DeleteMiddle(struct ListNode **head_p, int position);
 
 int main(void){
 	struct ListNode *two;
@@ -24,8 +25,9 @@ int main(void){
 	printf("before\n");
 	PrintList(head);
 
-	DeleteHead(head_p);
-	DeleteTail(head_p);
+	DeleteHead(head_p);		//この時点で4,5,7,10
+	DeleteTail(head_p);		//この時点で4,5,7
+	DeleteMiddle(head_p, 2);
 
 	printf("after\n");
 	PrintList(head);
@@ -49,3 +51,17 @@ void DeleteTail(struct ListNode **head_p){
 	q->next = p->next;
 	free(p);
 }
+
+void DeleteMiddle(struct ListNode **head_p, int position){
+	int i=1;
+	struct ListNode *p, *q;
+	p = *head_p;
+	while(i<position){
+		i++;
+		q = p;
+		p = p->next;
+	}
+	q->next = p->next;
+	free(p);
+}
+
