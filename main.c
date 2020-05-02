@@ -1,16 +1,29 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "define.h" 
 #include "func.h"
 
-int main(void){
-	int node_no;
-	struct ListNode ten = {10, NULL};
-	struct ListNode seven = {7, &ten};
-	struct ListNode five = {5, &seven};
-	struct ListNode *head;
+void InsertToTop(struct ListNode *head, int data);
 
+int main(void){
+	struct ListNode five = {5, NULL};
+	struct ListNode *head;
 	head = &five;
-	node_no = PrintList(head);
-	printf("number of nodes is %d\n", node_no);
+
+	printf("before\n");
+	PrintList(head);
+
+	InsertToTop(head, 2);
+
+	printf("after\n");
+	PrintList(head);
 	return 0;
+}
+
+void InsertToTop(struct ListNode *head, int data){
+	struct ListNode *newNode;
+	newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
+	newNode->data = data;
+	newNode->next = head;
+	head = newNode;
 }
